@@ -1,0 +1,32 @@
+<div class="users-list" *ngIf="!user_flag">
+  <h2>Users List</h2>
+
+  <mat-card *ngFor="let user of users" class="users-card" [routerLink]="['/users', user.id]">
+  	<mat-card-header>
+  		<mat-card-title>{{ user.first_name }} {{ user.last_name }}</mat-card-title>
+  		<mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+  	</mat-card-header>
+  </mat-card>
+
+  <div>
+    <button (click)="ChangePagination('prev')" mat-button>PREV</button>
+    <button (click)="ChangePagination('next')" mat-button>NEXT</button>
+  </div>
+
+</div>
+
+<div class="users-list" *ngIf="user_flag">
+  <h2>User</h2>
+
+  <mat-card class="users-card">
+    <mat-card-header>
+      <mat-card-title>{{ user.id }} - {{ user.first_name }} {{ user.last_name }}</mat-card-title>
+      <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="users-card-img" src="{{ user.avatar }}" alt="{{ user.first_name }}">
+    <mat-card-actions>
+      <button [routerLink]="['/']" mat-raised-button>BACK</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
